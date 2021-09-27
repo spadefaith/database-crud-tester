@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel='stylesheet' href='./styles/custom.css'>
+    <title>Todo - Database Tester</title>
+</head>
+<body>
+    
+    
+    <main data-component=app id=app>
+        <section class=form-container>
+            <h1 class='title is-3'>Form</h1>
+            <form data-event=submit data-component="form" id=form>
+                <div class="field">
+                    <label class="label">Field 1</label>
+                    <div class="control">
+                      <input name=string1 type=text id=field1 class="input" type="text" placeholder="field1">  
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Field 2</label>
+                    <div class="control"> 
+                      <input name=string2 type=text id=field2 class="input" type="text" placeholder="field2"> 
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Field 3</label>
+                    <div class="control">  
+                      <input name=string3 type=text id=field3 class="input" type="text" placeholder="field3"> 
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Field 4</label>
+                    <div class="control"> 
+                      <input name=number4 type=text id=field4 class="input" type="text" placeholder="field4"> 
+                    </div>
+                </div>
+                <div class="field is-grouped">
+                    <p class="control">
+                      <button type=submit class="button is-primary">
+                        Submit
+                      </button>
+                      <button type=reset class="button is-primary">
+                        Reset
+                      </button>
+                    </p> 
+                  </div>
+            </form>
+        </section>
+        <section class=table-container>
+            <table class='table is-fullwidth' data-component="table" id=table>
+                <thead class="class">
+                    <tr>
+                        <th>Field 1</th>
+                        <th>Field 2</th>
+                        <th>Field 3</th>
+                        <th>Field 4</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>                    
+                </thead>
+                <tbody class="class" data-event='click'></tbody>
+            </table>
+        </section> 
+    </main>
+    
+    <template id=row>
+        <tr data-for='data of datas'>
+            <td data-for='item in ' data-for-auto=true data-for-update='data of datas' data-for-bind-key=id data-for-bind-val=display id={{data.id}}>{{data.display}}</td>
+            <td><button class='button is-success'>Edit</button></td>
+            <td><button class='button is-danger'>Delete</button></td>
+        </tr>
+    </template>
+    
+    
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js'></script>
+    <script src='/asset/cake.js'></script>
+    <script>
+        const socket = io();
+        socket.on('connected', (e)=>{ 
+            console.log(e);
+        });
+        socket.on('log', (m)=>{
+            // console.log(m);
+            render(m.message);
+        });
+
+        socket.on("disconnect", () => {
+            socket.connect();
+        });
+    </script>
+
+    <script src='./component/form.js'></script>
+
+
+
+</body>
+</html>

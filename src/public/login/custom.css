@@ -1,0 +1,15 @@
+body{
+    min-height: 100vh;
+    width: 100%;
+    display:grid;
+}
+body>.app{
+    display:grid;
+    height: 100%;
+    justify-content: center; 
+}
+
+body>.app>.form-container{
+    max-width:500px;
+    margin-top:50%;
+}

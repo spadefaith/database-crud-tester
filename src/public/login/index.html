@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Tester</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel='stylesheet' href='./custom.css'>
+</head>
+<body> 
+    <div class='app'>
+        <div class='form-container'>
+            <h1 class='title is-4'>Database Tester</h1> 
+            <form action='/login' method='POST'>
+                <div class="field">
+                    <label class="label">password</label>
+                    <div class="control">
+                      <input name=password type=password id=password class="input is-large" type="text" placeholder="password">
+                    </div>
+                  </div>
+                  <div class="field is-grouped">
+                    <p class="control">
+                      <button type=submit class="button is-primary">
+                        Submit
+                      </button>
+                    </p> 
+                  </div>
+            </form>
+        </div>
+    </div> 
+
+    <script src='./upup.sw.min.js'></script>
+    <script src='./upup.min.js'></script>
+    <script>
+        UpUp.start({
+          'content-url': './index.html', // show this when the user is offline
+          'assets': [                 // define additional assets needed while offline:
+              'https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css',
+           ]
+        });
+    </script>
+</body>
+</html>
