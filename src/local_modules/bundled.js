@@ -1061,7 +1061,7 @@ Attrib.prototype._compileClass = function(cls, component, isStatic){
     return new Promise((res)=>{
 
         if (!cls.length) {res();return;};
-        let els = this._static(component)(ifs, isStatic);
+        let els = this._static(component)(cls, isStatic);
         if (!els.length){res();return;}
         for (let s = 0; s < els.length; s++){
             let id = `cc${this.uiid}`;
@@ -1479,8 +1479,8 @@ Attrib.prototype.inject = function(el, component, isStatic=false){
         })
     
         this.stat.handlers[handler.original] += 1;
-    
-
+     
+        // console.log(handler, component);
         return prom.then(variable=>{
             // console.log(variable, _component);
             let execs = []; 
@@ -1490,12 +1490,12 @@ Attrib.prototype.inject = function(el, component, isStatic=false){
             };
     
             
+            console.log(_component, _event)
     
             if (this.subscribe[_component] && this.subscribe[_component][_event]){
                 let subscribe = this.subscribe[_component][_event];
 
 
-                // console.log(_component, _event, subscribe)
                 filter = !filter?true:(()=>{
                     subscribe = subscribe.filter(fn=>{
                         let binded = fn.binded;
@@ -3833,6 +3833,7 @@ Cakes.prototype.create = function(name, template, options){
                 };
                 fn = o[name].bind(component);
                 if (typeof fn == 'function'){
+                    // console.log(fn, name);
                     fn.name = name;
                     fn.original = name;
                     fn.binded = component.name;

@@ -16,7 +16,8 @@
     "jsdoc": "^3.6.7"
   },
   "scripts": {
-    "doc": "jsdoc -c jsdoc.json"
+    "doc": "jsdoc -c jsdoc.json",
+    "start":"nodemon src/index.js" 
   },
   "author": "",
   "license": "ISC"
